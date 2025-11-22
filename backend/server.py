@@ -10,6 +10,8 @@ from typing import List
 import uuid
 from datetime import datetime, timezone
 
+# Importar rutas de ML
+from routes.ml_routes import ml_router
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -20,10 +22,13 @@ client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
 # Create the main app without a prefix
-app = FastAPI()
+app = FastAPI(
+    title=\"API de Machine Learning - Proyecto Final\",
+    description=\"API para modelos supervisados y no supervisados\",
+    version=\"1.0.0\"\n)
 
 # Create a router with the /api prefix
-api_router = APIRouter(prefix="/api")
+api_router = APIRouter(prefix=\"/api\")
 
 
 # Define Models
