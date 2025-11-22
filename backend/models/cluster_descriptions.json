@@ -1,0 +1,18 @@
+{
+  "0": {
+    "name": "Usuarios de Adelantos en Efectivo",
+    "description": "Clientes que frecuentemente solicitan adelantos en efectivo, posible riesgo financiero.",
+    "avg_balance": 5332.31868907563,
+    "avg_purchases": 2550.348917647059,
+    "avg_credit_limit": 14685.682635294117,
+    "customer_count": 8925
+  },
+  "1": {
+    "name": "Revolventes de Alto Balance",
+    "description": "Clientes que mantienen balances altos pero compran poco, posiblemente pagando intereses.",
+    "avg_balance": 98119.4364,
+    "avg_purchases": 239489.4068,
+    "avg_credit_limit": 259918.9484,
+    "customer_count": 25
+  }
+}
