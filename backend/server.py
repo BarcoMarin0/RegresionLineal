@@ -29,7 +29,7 @@ app = FastAPI(
 )
 
 # Create a router with the /api prefix
-api_router = APIRouter(prefix=\"/api\")
+api_router = APIRouter(prefix="/api")
 
 
 # Define Models
