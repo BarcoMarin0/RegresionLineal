@@ -23,18 +23,18 @@ db = client[os.environ['DB_NAME']]
 
 # Create the main app without a prefix
 app = FastAPI(
-    title="API de Machine Learning - Proyecto Final",
-    description="API para modelos supervisados y no supervisados",
-    version="1.0.0"
+    title='API de Machine Learning - Proyecto Final',
+    description='API para modelos supervisados y no supervisados',
+    version='1.0.0'
 )
 
 # Create a router with the /api prefix
-api_router = APIRouter(prefix="/api")
+api_router = APIRouter(prefix='/api')
 
 
 # Define Models
 class StatusCheck(BaseModel):
-    model_config = ConfigDict(extra="ignore")  # Ignore MongoDB's _id field
+    model_config = ConfigDict(extra='ignore')  # Ignore MongoDB's _id field
     
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     client_name: str
@@ -44,11 +44,11 @@ class StatusCheckCreate(BaseModel):
     client_name: str
 
 # Add your routes to the router instead of directly to app
-@api_router.get("/")
+@api_router.get('/')
 async def root():
-    return {"message": "Hello World"}
+    return {'message': 'Hello World'}
 
-@api_router.post("/status", response_model=StatusCheck)
+@api_router.post('/status', response_model=StatusCheck)
 async def create_status_check(input: StatusCheckCreate):
     status_dict = input.model_dump()
     status_obj = StatusCheck(**status_dict)
@@ -60,10 +60,10 @@ async def create_status_check(input: StatusCheckCreate):
     _ = await db.status_checks.insert_one(doc)
     return status_obj
 
-@api_router.get("/status", response_model=List[StatusCheck])
+@api_router.get('/status', response_model=List[StatusCheck])
 async def get_status_checks():
     # Exclude MongoDB's _id field from the query results
-    status_checks = await db.status_checks.find({}, {"_id": 0}).to_list(1000)
+    status_checks = await db.status_checks.find({}, {'_id': 0}).to_list(1000)
     
     # Convert ISO string timestamps back to datetime objects
     for check in status_checks:
@@ -74,14 +74,14 @@ async def get_status_checks():
 
 # Include the routers in the main app
 app.include_router(api_router)
-app.include_router(ml_router, prefix="/api")
+app.include_router(ml_router, prefix='/api')
 
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
     allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=['*'],
+    allow_headers=['*'],
 )
 
 # Configure logging
@@ -91,6 +91,6 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-@app.on_event("shutdown")
+@app.on_event('shutdown')
 async def shutdown_db_client():
     client.close()
