@@ -109,12 +109,7 @@ const LogisticRegression = () => {
                   <option value="No">No</option>
                 </select>
               </div>
-            </div>
-          </div>
 
-          <div style={styles.card}>
-            <h3 style={styles.sectionTitle}>Servicios</h3>
-            <div style={styles.grid}>
               <div className="form-group">
                 <label className="form-label">Antigüedad (meses)</label>
                 <input
@@ -128,7 +123,12 @@ const LogisticRegression = () => {
                   data-testid="input-tenure"
                 />
               </div>
+            </div>
+          </div>
 
+          <div style={styles.card}>
+            <h3 style={styles.sectionTitle}>Servicios</h3>
+            <div style={styles.grid}>
               <div className="form-group">
                 <label className="form-label">Servicio Telefónico</label>
                 <select name="PhoneService" value={formData.PhoneService} onChange={handleChange} className="form-select" data-testid="input-phone">
