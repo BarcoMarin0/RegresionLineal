@@ -23,9 +23,10 @@ db = client[os.environ['DB_NAME']]
 
 # Create the main app without a prefix
 app = FastAPI(
-    title=\"API de Machine Learning - Proyecto Final\",
-    description=\"API para modelos supervisados y no supervisados\",
-    version=\"1.0.0\"\n)
+    title="API de Machine Learning - Proyecto Final",
+    description="API para modelos supervisados y no supervisados",
+    version="1.0.0"
+)
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix=\"/api\")
