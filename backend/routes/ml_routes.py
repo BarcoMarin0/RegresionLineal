@@ -14,7 +14,9 @@ from pathlib import Path
 ml_router = APIRouter(prefix="/ml", tags=["Machine Learning"])
 
 # Directorio de modelos
-MODEL_DIR = Path('/app/backend/models')
+import os
+MODEL_DIR = Path(os.getcwd()) / "models"
+
 
 # ============================================
 # MODELOS Y ARTEFACTOS
